@@ -34,6 +34,14 @@ links:
 #    description  說明文字
 # ------------------------------------------------------------
 sections:
+  - title: News
+    items:
+      - title: "Paper released on arXiv: Evaluating the Performance of Open-Vocabulary Object Detection in Low-quality Image"
+        year: 2025
+        links:
+          - name: arxiv
+            url: https://arxiv.org/abs/2512.22801
+
   - title: Research
     intro: Some Paper...
     items:
@@ -69,3 +77,9 @@ sections:
             url: https://github.com/gohakushi1118/Intro-to-Computer-Vision-and-Computational-Photography
         description: >-
           CS180 is a publicly available course from UC Berkeley that includes five projects: Alignment & Colorization, Sharpening & Hybrid Images, Image Warping, (Auto) Stitching, and Image Generation Models. Since I will be conducting research in computer vision, I have been building up my knowledge and hands-on technical experience in the field through these projects.
+
+  - title: Misc
+    items:
+      - title: Misc item title
+        description: >-
+          Write something here.
