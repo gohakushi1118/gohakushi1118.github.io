@@ -5,9 +5,10 @@ avatar: images/icon.jpg
 # 以下三項可選，取消註解即可顯示
 # role: "Graduate Student @ **Your University**"   # 名字下方的身分
 # slogan: "Your motto here."                       # 介紹下方的引言
-# interests:                                       # 照片下方的標籤
-#   - Computer Vision
-#   - Object Detection
+interests:                                         # 照片下方的標籤
+  - Computer Vision
+  - Object Detection
+  - Low-quality Images
 
 bio:
   - >-
@@ -45,16 +46,27 @@ links:
 #      title / image（放 images/）/ authors（**粗體**標自己）/ venue / year
 #      links: [{name, url, icon?}]（arxiv、code、dataset、pdf 會自動配圖示）/ description
 #    grid       專案卡片格，欄位同上
-#    list       News：date / text（text 可用 Markdown 連結）
+#    list       News 時間軸：date（YYYY-MM，依年份分組）/ icon（可放 emoji）/ text（可用 Markdown 連結）
 #    experience 經歷卡片：org / url / position / logo（放 images/）/ start / end（寫 Now 會變綠色）
 #    misc       條列：icon（可放 emoji）/ text
 #  note: 區塊標題右側的小字（可選）
 # ------------------------------------------------------------
 sections:
+  - title: Experience
+    layout: experience
+    items:
+      - org: Organization / Lab
+        url: https://example.com
+        position: Position title
+        # logo: your-logo.png
+        start: 09/2025
+        end: Now
+
   - title: News
     layout: list
     items:
-      - date: Dec 2025
+      - date: 2025-12
+        icon: "📄"
         text: "Paper released on arXiv: [Evaluating the Performance of Open-Vocabulary Object Detection in Low-quality Image](https://arxiv.org/abs/2512.22801)"
 
   - title: Research
@@ -91,16 +103,6 @@ sections:
             url: https://github.com/gohakushi1118/Intro-to-Computer-Vision-and-Computational-Photography
         description: >-
           CS180 is a publicly available course from UC Berkeley that includes five projects: Alignment & Colorization, Sharpening & Hybrid Images, Image Warping, (Auto) Stitching, and Image Generation Models. Since I will be conducting research in computer vision, I have been building up my knowledge and hands-on technical experience in the field through these projects.
-
-  - title: Experience
-    layout: experience
-    items:
-      - org: Organization / Lab
-        url: https://example.com
-        position: Position title
-        # logo: your-logo.png
-        start: 09/2025
-        end: Now
 
   - title: Misc
     layout: misc

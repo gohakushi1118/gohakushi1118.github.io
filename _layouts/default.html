@@ -79,21 +79,31 @@
         {% case section.layout %}
 
         {% when "list" %}
-        <!-- News：日期 + 文字 -->
-        <div class="card news">
-          {% for item in section.items %}
-          <div class="news-item">
-            <span class="d">{{ item.date }}</span>
-            <span class="t">{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span>
+        <!-- News：依年份分組的時間軸，date 格式 YYYY-MM -->
+        {% assign by_year = section.items | group_by_exp: "i", "i.date | slice: 0, 4" %}
+        <div class="card news tl reveal">
+          <div class="tl-scroll">
+            {% for g in by_year %}
+            <div class="tl-year">{{ g.name }}</div>
+            <div class="tl-list">
+              {% for item in g.items %}
+              {% assign d = item.date | append: "" %}
+              <div class="tl-item">
+                <span class="d">{% if d.size >= 7 %}{{ d | append: "-01" | date: "%b" }}{% endif %}</span>
+                <span class="e">{{ item.icon }}</span>
+                <span class="t">{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span>
+              </div>
+              {% endfor %}
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
         </div>
 
         {% when "experience" %}
         <!-- Experience：logo + 單位 + 職稱 + 期間 -->
         <div class="exp-grid">
           {% for item in section.items %}
-          <div class="card exp">
+          <div class="card exp reveal">
             {% if item.logo %}<img src="{{ site.baseurl }}/images/{{ item.logo }}" alt="{{ item.org }}">
             {% else %}<span class="exp-ph"><i class="fa-solid fa-briefcase"></i></span>{% endif %}
             <div>
@@ -109,7 +119,7 @@
 
         {% when "misc" %}
         <!-- Misc：條列 -->
-        <ul class="card misc">
+        <ul class="card misc reveal">
           {% for item in section.items %}
           <li><span class="e">{{ item.icon }}</span><span>{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span></li>
           {% endfor %}
@@ -119,7 +129,7 @@
         <!-- Projects：卡片格 -->
         <div class="proj-grid">
           {% for item in section.items %}
-          <article class="card proj">
+          <article class="card proj reveal">
             {% if item.image %}<div class="media"><img src="{{ site.baseurl }}/images/{{ item.image }}" alt="{{ item.title }}"></div>{% endif %}
             <div class="body">
               {% if item.venue or item.year %}<div class="date">{{ item.venue }}{% if item.venue and item.year %} · {% endif %}{{ item.year }}</div>{% endif %}
@@ -134,7 +144,7 @@
         {% else %}
         <!-- 預設（論文）：左圖右文 -->
         {% for item in section.items %}
-        <article class="card pub{% unless item.image %} no-media{% endunless %}">
+        <article class="card pub reveal{% unless item.image %} no-media{% endunless %}">
           {% if item.image %}<div class="media"><img src="{{ site.baseurl }}/images/{{ item.image }}" alt="{{ item.title }}"></div>{% endif %}
           <div>
             <h3>{% if item.links and item.links.size > 0 %}<a href="{{ item.links[0].url }}" target="_blank" rel="noopener">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
@@ -166,6 +176,14 @@
       function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 4); }
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
+
+      // 卡片捲動進入畫面時淡入
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function (e) { io.observe(e); });
     })();
   </script>
 </body>
