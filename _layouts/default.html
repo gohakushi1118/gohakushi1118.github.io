@@ -17,6 +17,8 @@
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
 
 </head>
 
@@ -31,9 +33,10 @@
               {% for para in p.bio %}
               {{ para | markdownify }}
               {% endfor %}
-              <p style="text-align:center">
-                {% for l in p.links %}<a href="{{ l.url }}">{{ l.name }}</a>{% unless forloop.last %} &nbsp;/&nbsp; {% endunless %}{% endfor %}
-              </p>
+              <div class="link-buttons">
+                {% for l in p.links %}<a class="link-btn{% if l.primary %} primary{% endif %}" href="{{ l.url }}">{% if l.icon %}<i class="{{ l.icon }}" aria-hidden="true"></i>{% endif %}{{ l.name }}</a>
+                {% endfor %}
+              </div>
             </td>
             <td style="padding:2.5%;width:40%;max-width:40%">
               <img style="width:100%;max-width:100%" alt="profile photo" src="{{ site.baseurl }}/{{ p.avatar }}">
@@ -52,6 +55,19 @@
             </td>
           </tr>
         </table>
+        {% if section.layout == "list" %}
+        <table style="{{ tbl }}">
+          <tr>
+            <td style="padding:0 2.5%;width:100%;vertical-align:middle">
+              <ul style="padding-left:20px;margin:0">
+                {% for item in section.items %}
+                <li style="margin-bottom:6px">{% if item.date %}<strong>[{{ item.date }}]</strong> {% endif %}{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+          </tr>
+        </table>
+        {% else %}
         <table style="{{ tbl }}">
           {% for item in section.items %}
           <tr>
@@ -78,6 +94,7 @@
           </tr>
           {% endfor %}
         </table>
+        {% endif %}
         {% endif %}
         {% endfor %}
 

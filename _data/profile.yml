@@ -8,18 +8,27 @@ bio:
     with a focus on object detection in low-quality images.
 
 links:
-  - name: Email
-    url: mailto:gohakushi@gmail.com
-  - name: GitHub
-    url: https://github.com/gohakushi1118
+  # icon: Font Awesome class（https://fontawesome.com/search?o=r&m=free）
+  # primary: true → 強調色按鈕
   - name: CV
     url: resume.pdf
-  - name: Google Scholar
+    icon: fa-solid fa-file-lines
+    primary: true
+  - name: Email
+    url: mailto:gohakushi@gmail.com
+    icon: fa-solid fa-envelope
+  - name: Scholar
     url: https://scholar.google.com/citations?user=XvRQ6egAAAAJ&hl=en
+    icon: ai ai-google-scholar
+  - name: GitHub
+    url: https://github.com/gohakushi1118
+    icon: fa-brands fa-github
   - name: Twitter
     url: https://x.com/puchi1118
+    icon: fa-brands fa-x-twitter
   - name: Blog
     url: https://home.gamer.com.tw/profile/index_creation.php?owner=gohakushi
+    icon: fa-solid fa-pen-nib
 # ------------------------------------------------------------
 #  區塊：可以自由新增、刪除、改名、調整順序
 #  沒有 items 的區塊會自動隱藏
@@ -34,16 +43,14 @@ links:
 #    description  說明文字
 # ------------------------------------------------------------
 sections:
+  # layout: list → 以條列顯示，每個 item 只需 date 和 text（text 可用 Markdown 連結）
   - title: News
+    layout: list
     items:
-      - title: "Paper released on arXiv: Evaluating the Performance of Open-Vocabulary Object Detection in Low-quality Image"
-        year: 2025
-        links:
-          - name: arxiv
-            url: https://arxiv.org/abs/2512.22801
+      - date: Dec 2025
+        text: "Paper released on arXiv: [Evaluating the Performance of Open-Vocabulary Object Detection in Low-quality Image](https://arxiv.org/abs/2512.22801)"
 
   - title: Research
-    intro: Some Paper...
     items:
       - title: Evaluating the Performance of Open-Vocabulary Object Detection in Low-quality Image
         image: lq.jpg
@@ -66,7 +73,6 @@ sections:
           image degradation with 5,000 processed images per level.
 
   - title: Projects
-    intro: Some Code...
     items:
       - title: UC Berkeley Intro to Computer Vision and Computational Photography Projects
         image: cs180.jpg
@@ -77,6 +83,14 @@ sections:
             url: https://github.com/gohakushi1118/Intro-to-Computer-Vision-and-Computational-Photography
         description: >-
           CS180 is a publicly available course from UC Berkeley that includes five projects: Alignment & Colorization, Sharpening & Hybrid Images, Image Warping, (Auto) Stitching, and Image Generation Models. Since I will be conducting research in computer vision, I have been building up my knowledge and hands-on technical experience in the field through these projects.
+
+  - title: Experience
+    items:
+      - title: Position title
+        venue: Organization / Lab
+        year: 2025 - Present
+        description: >-
+          Describe what you did here.
 
   - title: Misc
     items:

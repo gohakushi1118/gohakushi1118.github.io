@@ -44,7 +44,7 @@ h2 {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 22px;
   font-display: auto;
-  font-weight: normal;
+  font-weight: 700;
   padding: 0px;
   margin: 0px;
   display:inline; 
@@ -97,6 +97,54 @@ h1 {
 
 span.highlight {
   background-color: #ffffd0;
+}
+
+/* Profile link buttons */
+.link-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+a.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid #d9dce3;
+  border-radius: 10px;
+  background: #f7f8fa;
+  color: #1f2328;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+a.link-btn:hover,
+a.link-btn:focus {
+  background: #eceef3;
+  border-color: #b8bdc7;
+  color: #1f2328;
+}
+
+a.link-btn.primary {
+  background: #8b85ff;
+  border-color: #8b85ff;
+  color: #fff;
+}
+
+a.link-btn.primary:hover,
+a.link-btn.primary:focus {
+  background: #7770f5;
+  border-color: #7770f5;
+  color: #fff;
+}
+
+a.link-btn i {
+  font-size: 15px;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
