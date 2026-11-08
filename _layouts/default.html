@@ -1,116 +1,173 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 {% comment %}
   只負責排版。所有內容請改 _data/profile.yml
 {% endcomment %}
 {% assign p = site.data.profile %}
-{% assign tbl = "width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;" %}
 <html lang="en">
 
 <head>
-  <title>{{ p.title | default: p.name }}</title>
-
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-
-  <meta name="author" content="{{ p.name }}" />
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+  <title>{{ p.title | default: p.name }}</title>
+  <meta name="author" content="{{ p.name }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
-
+  <link rel="stylesheet" href="{{ site.baseurl }}/style.css">
 </head>
 
 <body>
-  <table style="{{ tbl }}max-width:800px;">
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="{{ tbl }}">
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:60%;vertical-align:middle">
-              <h1>{{ p.name }}</h1>
-              {% for para in p.bio %}
-              {{ para | markdownify }}
-              {% endfor %}
-              <div class="link-buttons">
-                {% for l in p.links %}<a class="link-btn{% if l.primary %} primary{% endif %}" href="{{ l.url }}">{% if l.icon %}<i class="{{ l.icon }}" aria-hidden="true"></i>{% endif %}{{ l.name }}</a>
-                {% endfor %}
-              </div>
-            </td>
-            <td style="padding:2.5%;width:40%;max-width:40%">
-              <img style="width:100%;max-width:100%" alt="profile photo" src="{{ site.baseurl }}/{{ p.avatar }}">
-            </td>
-          </tr>
-        </table>
 
-        {% for section in p.sections %}
-        {% if section.items and section.items.size > 0 %}
-        {% unless forloop.first %}<br><br><br>{% endunless %}
-        <table style="{{ tbl }}">
-          <tr>
-            <td style="padding:2.5%;width:100%;vertical-align:middle">
-              <h2>{{ section.title }}</h2>
-              {% if section.intro %}{{ section.intro | markdownify }}{% endif %}
-            </td>
-          </tr>
-        </table>
-        {% if section.layout == "list" %}
-        <table style="{{ tbl }}">
-          <tr>
-            <td style="padding:0 2.5%;width:100%;vertical-align:middle">
-              <ul style="padding-left:20px;margin:0">
-                {% for item in section.items %}
-                <li style="margin-bottom:6px">{% if item.date %}<strong>[{{ item.date }}]</strong> {% endif %}{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
-                {% endfor %}
-              </ul>
-            </td>
-          </tr>
-        </table>
-        {% else %}
-        <table style="{{ tbl }}">
+  <!-- ================= Nav ================= -->
+  <nav class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="#top">{{ p.name }}</a>
+      <ul>
+        {% for section in p.sections %}{% if section.items and section.items.size > 0 %}
+        <li><a href="#{{ section.title | slugify }}">{{ section.title }}</a></li>
+        {% endif %}{% endfor %}
+      </ul>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ================= Hero ================= -->
+    <header class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <h1>{{ p.name }}</h1>
+            {% if p.role %}<p class="role">{{ p.role | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>{% endif %}
+            <div class="bio">
+              {% for para in p.bio %}{{ para | markdownify }}{% endfor %}
+            </div>
+            {% if p.slogan %}<p class="slogan">{{ p.slogan }}</p>{% endif %}
+            <div class="links">
+              {% for l in p.links %}<a class="btn{% if l.primary %} primary{% endif %}" href="{{ l.url }}"{% unless l.url contains 'mailto:' %} target="_blank" rel="noopener"{% endunless %}>{% if l.icon %}<i class="{{ l.icon }}" aria-hidden="true"></i>{% endif %}{{ l.name }}</a>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="hero-side">
+            <div class="photo-wrap">
+              <img class="photo" src="{{ site.baseurl }}/{{ p.avatar }}" alt="Photo of {{ p.name }}">
+            </div>
+            {% if p.interests %}
+            <ul class="interests" aria-label="Research interests">
+              {% for t in p.interests %}<li>{{ t }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {% for section in p.sections %}
+    {% if section.items and section.items.size > 0 %}
+    <section id="{{ section.title | slugify }}">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>{{ section.title }}</h2>
+          {% if section.note %}<span class="note">{{ section.note }}</span>{% endif %}
+        </div>
+        {% if section.intro %}<div class="sec-intro">{{ section.intro | markdownify }}</div>{% endif %}
+
+        {% case section.layout %}
+
+        {% when "list" %}
+        <!-- News：日期 + 文字 -->
+        <div class="card news">
           {% for item in section.items %}
-          <tr>
-            <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
-              {% if item.image %}
-              <img src="{{ site.baseurl }}/tn/images/{{ item.image }}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
-              {% endif %}
-            </td>
-            <td style="padding:2.5%;width:75%;vertical-align:middle">
-              <h3>{{ item.title }}</h3>
-              {% if item.authors %}<br>{{ item.authors | markdownify | remove: '<p>' | remove: '</p>' }}{% endif %}
-              {% if item.venue or item.year %}
-              <br>
-              <em>{{ item.venue }}</em>{% if item.venue and item.year %}, {% endif %}{{ item.year }}
-              {% endif %}
-              {% if item.links %}
-              <br>
-              {% for l in item.links %}<a href="{{ l.url }}">{{ l.name }}</a>{% unless forloop.last %} / {% endunless %}{% endfor %}
-              {% endif %}
-              {% if item.description %}
-              {{ item.description | markdownify }}
-              {% endif %}
-            </td>
-          </tr>
+          <div class="news-item">
+            <span class="d">{{ item.date }}</span>
+            <span class="t">{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span>
+          </div>
           {% endfor %}
-        </table>
-        {% endif %}
-        {% endif %}
+        </div>
+
+        {% when "experience" %}
+        <!-- Experience：logo + 單位 + 職稱 + 期間 -->
+        <div class="exp-grid">
+          {% for item in section.items %}
+          <div class="card exp">
+            {% if item.logo %}<img src="{{ site.baseurl }}/images/{{ item.logo }}" alt="{{ item.org }}">
+            {% else %}<span class="exp-ph"><i class="fa-solid fa-briefcase"></i></span>{% endif %}
+            <div>
+              <div class="org">{% if item.url %}<a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.org }}</a>{% else %}{{ item.org }}{% endif %}</div>
+              {% if item.position %}<div class="pos">{{ item.position | markdownify | remove: '<p>' | remove: '</p>' | strip }}</div>{% endif %}
+              {% if item.start or item.end %}
+              <div class="when">{{ item.start }}{% if item.start and item.end %} – {% endif %}{% if item.end == "Now" %}<span class="now">Now</span>{% else %}{{ item.end }}{% endif %}</div>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        {% when "misc" %}
+        <!-- Misc：條列 -->
+        <ul class="card misc">
+          {% for item in section.items %}
+          <li><span class="e">{{ item.icon }}</span><span>{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span></li>
+          {% endfor %}
+        </ul>
+
+        {% when "grid" %}
+        <!-- Projects：卡片格 -->
+        <div class="proj-grid">
+          {% for item in section.items %}
+          <article class="card proj">
+            {% if item.image %}<div class="media"><img src="{{ site.baseurl }}/images/{{ item.image }}" alt="{{ item.title }}"></div>{% endif %}
+            <div class="body">
+              {% if item.venue or item.year %}<div class="date">{{ item.venue }}{% if item.venue and item.year %} · {% endif %}{{ item.year }}</div>{% endif %}
+              <h3>{% if item.links and item.links.size > 0 %}<a href="{{ item.links[0].url }}" target="_blank" rel="noopener">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
+              {% if item.description %}<p>{{ item.description | strip_newlines }}</p>{% endif %}
+              {% include link-pills.html links=item.links %}
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+
+        {% else %}
+        <!-- 預設（論文）：左圖右文 -->
+        {% for item in section.items %}
+        <article class="card pub{% unless item.image %} no-media{% endunless %}">
+          {% if item.image %}<div class="media"><img src="{{ site.baseurl }}/images/{{ item.image }}" alt="{{ item.title }}"></div>{% endif %}
+          <div>
+            <h3>{% if item.links and item.links.size > 0 %}<a href="{{ item.links[0].url }}" target="_blank" rel="noopener">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
+            {% if item.authors %}<div class="authors">{{ item.authors | markdownify | remove: '<p>' | remove: '</p>' | strip }}</div>{% endif %}
+            {% if item.venue or item.year %}<div class="venues"><span class="venue">{{ item.venue }}{% if item.venue and item.year %}&nbsp;{% endif %}{{ item.year }}</span></div>{% endif %}
+            {% if item.description %}<p class="abs">{{ item.description | strip_newlines }}</p>{% endif %}
+            {% include link-pills.html links=item.links %}
+          </div>
+        </article>
         {% endfor %}
 
-        <table style="{{ tbl }}">
-          <tr>
-            <td style="padding:0px">
-              <br>
-              <p style="text-align:center;font-size:small;">
-                &copy; 2026 Po-Chih Wu &middot; Last updated {{ site.time | date: "%b %-d, %Y" }}
-              </p>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+        {% endcase %}
+      </div>
+    </section>
+    {% endif %}
+    {% endfor %}
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 Po-Chih Wu &middot; Last updated {{ site.time | date: "%b %-d, %Y" }}</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById('nav');
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 4); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 </body>
 
 </html>

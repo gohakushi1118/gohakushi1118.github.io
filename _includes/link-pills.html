@@ -1,0 +1,20 @@
+{% comment %}
+  連結小按鈕。沒寫 icon 時依名稱自動挑圖示。
+{% endcomment %}
+{% if include.links and include.links.size > 0 %}
+<div class="pills">
+  {% for l in include.links %}
+  {% assign key = l.name | downcase %}
+  {% if l.icon %}{% assign ic = l.icon %}
+  {% elsif key == "arxiv" %}{% assign ic = "ai ai-arxiv" %}
+  {% elsif key == "code" or key == "github" %}{% assign ic = "fa-brands fa-github" %}
+  {% elsif key == "dataset" or key == "data" %}{% assign ic = "fa-solid fa-database" %}
+  {% elsif key == "pdf" or key == "paper" %}{% assign ic = "fa-solid fa-file-pdf" %}
+  {% elsif key == "project" or key == "project page" or key == "website" %}{% assign ic = "fa-solid fa-globe" %}
+  {% elsif key == "video" %}{% assign ic = "fa-brands fa-youtube" %}
+  {% elsif key == "slides" %}{% assign ic = "fa-solid fa-person-chalkboard" %}
+  {% else %}{% assign ic = "fa-solid fa-link" %}{% endif %}
+  <a class="pill" href="{{ l.url }}" target="_blank" rel="noopener"><i class="{{ ic }}" aria-hidden="true"></i>{{ l.name }}</a>
+  {% endfor %}
+</div>
+{% endif %}
