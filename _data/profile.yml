@@ -1,0 +1,71 @@
+name: Po-Chih Wu
+title: Po-Chih Wu
+avatar: images/icon.jpg
+
+bio:
+  - >-
+    My research interests include computer vision and machine learning,
+    with a focus on object detection in low-quality images.
+
+links:
+  - name: Email
+    url: mailto:gohakushi@gmail.com
+  - name: GitHub
+    url: https://github.com/gohakushi1118
+  - name: CV
+    url: resume.pdf
+  - name: Google Scholar
+    url: https://scholar.google.com/citations?user=XvRQ6egAAAAJ&hl=en
+  - name: Twitter
+    url: https://x.com/puchi1118
+  - name: Blog
+    url: https://home.gamer.com.tw/profile/index_creation.php?owner=gohakushi
+# ------------------------------------------------------------
+#  區塊：可以自由新增、刪除、改名、調整順序
+#  沒有 items 的區塊會自動隱藏
+#
+#  每個 item 的欄位：
+#    title    標題（必填）
+#    image    圖片檔名，放在 images/ ，縮圖放 tn/images/ 同檔名
+#    authors  作者（可用 **粗體** 標出自己）
+#    venue    發表處 / 課程名稱
+#    year     年份
+#    links    連結清單，每個都是 {name, url}
+#    description  說明文字
+# ------------------------------------------------------------
+sections:
+  - title: Research
+    intro: Some Paper...
+    items:
+      - title: Evaluating the Performance of Open-Vocabulary Object Detection in Low-quality Image
+        image: lq.jpg
+        authors: "**Po-Chih Wu**"
+        venue: arXiv
+        year: 2025
+        links:
+          - name: arxiv
+            url: https://arxiv.org/abs/2512.22801
+          - name: dataset
+            url: https://www.kaggle.com/datasets/pochihwu/low-quality-image-dataset
+          - name: code
+            url: https://github.com/gohakushi1118/Low-quality-image-dataset
+        description: >-
+          Due to the scarcity of suitable image datasets online related to low-quality images,
+          we created a new dataset for this study. Low-quality image dataset is based on the
+          COCO 2017 validation set, with images processed into four categories, including lossy
+          compression, image intensity, image noise, and image blur. In total, the dataset
+          comprises 100,000 processed images. Each low-quality category includes five levels of
+          image degradation with 5,000 processed images per level.
+
+  - title: Projects
+    intro: Some Code...
+    items:
+      - title: UC Berkeley Intro to Computer Vision and Computational Photography Projects
+        image: cs180.jpg
+        venue: Self Practice
+        year: 2026
+        links:
+          - name: code
+            url: https://github.com/gohakushi1118/Intro-to-Computer-Vision-and-Computational-Photography
+        description: >-
+          CS180 is a publicly available course from UC Berkeley that includes five projects: Alignment & Colorization, Sharpening & Hybrid Images, Image Warping, (Auto) Stitching, and Image Generation Models. Since I will be conducting research in computer vision, I have been building up my knowledge and hands-on technical experience in the field through these projects.

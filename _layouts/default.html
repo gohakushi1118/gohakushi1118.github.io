@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+{% comment %}
+  只負責排版。所有內容請改 _data/profile.yml
+{% endcomment %}
+{% assign p = site.data.profile %}
+{% assign tbl = "width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;" %}
+<html lang="en">
+
+<head>
+  <title>{{ p.title | default: p.name }}</title>
+
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+  <meta name="author" content="{{ p.name }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+  <table style="{{ tbl }}max-width:800px;">
+    <tr style="padding:0px">
+      <td style="padding:0px">
+        <table style="{{ tbl }}">
+          <tr style="padding:0px">
+            <td style="padding:2.5%;width:60%;vertical-align:middle">
+              <h1>{{ p.name }}</h1>
+              {% for para in p.bio %}
+              {{ para | markdownify }}
+              {% endfor %}
+              <p style="text-align:center">
+                {% for l in p.links %}<a href="{{ l.url }}">{{ l.name }}</a>{% unless forloop.last %} &nbsp;/&nbsp; {% endunless %}{% endfor %}
+              </p>
+            </td>
+            <td style="padding:2.5%;width:40%;max-width:40%">
+              <img style="width:100%;max-width:100%" alt="profile photo" src="{{ site.baseurl }}/{{ p.avatar }}">
+            </td>
+          </tr>
+        </table>
+
+        {% for section in p.sections %}
+        {% if section.items and section.items.size > 0 %}
+        {% unless forloop.first %}<br><br><br>{% endunless %}
+        <table style="{{ tbl }}">
+          <tr>
+            <td style="padding:2.5%;width:100%;vertical-align:middle">
+              <h2>{{ section.title }}</h2>
+              {% if section.intro %}{{ section.intro | markdownify }}{% endif %}
+            </td>
+          </tr>
+        </table>
+        <table style="{{ tbl }}">
+          {% for item in section.items %}
+          <tr>
+            <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+              {% if item.image %}
+              <img src="{{ site.baseurl }}/tn/images/{{ item.image }}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
+              {% endif %}
+            </td>
+            <td style="padding:2.5%;width:75%;vertical-align:middle">
+              <h3>{{ item.title }}</h3>
+              {% if item.authors %}<br>{{ item.authors | markdownify | remove: '<p>' | remove: '</p>' }}{% endif %}
+              {% if item.venue or item.year %}
+              <br>
+              <em>{{ item.venue }}</em>{% if item.venue and item.year %}, {% endif %}{{ item.year }}
+              {% endif %}
+              {% if item.links %}
+              <br>
+              {% for l in item.links %}<a href="{{ l.url }}">{{ l.name }}</a>{% unless forloop.last %} / {% endunless %}{% endfor %}
+              {% endif %}
+              {% if item.description %}
+              {{ item.description | markdownify }}
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        {% endif %}
+        {% endfor %}
+
+        <table style="{{ tbl }}">
+          <tr>
+            <td style="padding:0px">
+              <br>
+              <p style="text-align:center;font-size:small;">
+                Design and source code from <a style="font-size:small;" href="https://jonbarron.info">Jon Barron's website</a> via <a style="font-size:small;" href="https://github.com/leonidk/leonidk.github.io">leonidk.github.io</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
