@@ -5,10 +5,8 @@ avatar: images/icon.jpg
 # 以下三項可選，取消註解即可顯示
 # role: "Graduate Student @ **Your University**"   # 名字下方的身分
 # slogan: "Your motto here."                       # 介紹下方的引言
-interests:                                         # 照片下方的標籤
-  - Computer Vision
-  - Object Detection
-  - Low-quality Images
+# interests:                                       # 照片下方的標籤
+#   - Computer Vision
 
 bio:
   - >-
@@ -52,6 +50,18 @@ links:
 #  note: 區塊標題右側的小字（可選）
 # ------------------------------------------------------------
 sections:
+  # Education 使用和 Experience 相同的卡片樣式
+  #   org: 學校 / position: 學位與科系 / logo: 校徽（放 images/）/ start、end: 期間
+  - title: Education
+    layout: experience
+    items:
+      - org: University Name
+        url: https://example.com
+        position: M.S. in Computer Science
+        # logo: school-logo.png
+        start: 09/2025
+        end: Now
+
   - title: Experience
     layout: experience
     items:

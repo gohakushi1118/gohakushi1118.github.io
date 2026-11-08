@@ -26,11 +26,6 @@
   <nav class="nav" id="nav">
     <div class="wrap">
       <a class="brand" href="#top">{{ p.name }}</a>
-      <ul>
-        {% for section in p.sections %}{% if section.items and section.items.size > 0 %}
-        <li><a href="#{{ section.title | slugify }}">{{ section.title }}</a></li>
-        {% endif %}{% endfor %}
-      </ul>
     </div>
   </nav>
 
@@ -105,7 +100,7 @@
           {% for item in section.items %}
           <div class="card exp reveal">
             {% if item.logo %}<img src="{{ site.baseurl }}/images/{{ item.logo }}" alt="{{ item.org }}">
-            {% else %}<span class="exp-ph"><i class="fa-solid fa-briefcase"></i></span>{% endif %}
+            {% else %}<span class="exp-ph"><i class="fa-solid {% if section.title == 'Education' %}fa-graduation-cap{% else %}fa-briefcase{% endif %}"></i></span>{% endif %}
             <div>
               <div class="org">{% if item.url %}<a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.org }}</a>{% else %}{{ item.org }}{% endif %}</div>
               {% if item.position %}<div class="pos">{{ item.position | markdownify | remove: '<p>' | remove: '</p>' | strip }}</div>{% endif %}
