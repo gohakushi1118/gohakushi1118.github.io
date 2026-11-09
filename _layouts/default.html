@@ -14,7 +14,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v={{ site.time | date: '%s' }}">
@@ -39,6 +39,7 @@
               {% for l in p.links %}<a class="btn{% if l.primary %} primary{% endif %}" href="{{ l.url }}"{% unless l.url contains 'mailto:' %} target="_blank" rel="noopener"{% endunless %}>{% if l.icon %}<i class="{{ l.icon }}" aria-hidden="true"></i>{% endif %}{{ l.name }}</a>
               {% endfor %}
             </div>
+            {% if p.photo_caption %}<p class="motto" lang="ja">{{ p.photo_caption }}</p>{% endif %}
           </div>
           <div class="hero-side">
             <div class="photo-wrap">

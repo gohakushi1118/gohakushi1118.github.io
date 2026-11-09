@@ -1,6 +1,7 @@
 name: Po-Chih Wu
 title: Po-Chih Wu
 avatar: images/icon.jpg
+photo_caption: 人生って、優しくなるためにあるんだと思っています。   # 自我介紹下方的文字
 
 # 以下三項可選，取消註解即可顯示
 # role: "Graduate Student @ **Your University**"   # 名字下方的身分
@@ -10,16 +11,16 @@ avatar: images/icon.jpg
 
 bio:
   - >-
-    My research interests include computer vision and machine learning,
-    with a focus on object detection in low-quality images.
+    I am a third-year undergraduate student at [National Yang Ming Chiao Tung University](https://www.nycu.edu.tw/), majoring in Information Management and Finance with a cross-disciplinary program in Computer Science.
+    <br><br>
+    I'm currently exploring **Vector Graphics** and **Image/Video Generation**, advised by Prof. [Yu-Lun Liu](https://yulunalexliu.github.io) and Prof. [Chia-Mu Yu](https://chiamuyu.weebly.com).
+
 
 links:
   # icon: Font Awesome class（https://fontawesome.com/search?o=r&m=free）
-  # primary: true → 強調色按鈕
   - name: CV
     url: resume.pdf
     icon: fa-solid fa-file-lines
-    primary: true
   - name: Email
     url: mailto:gohakushi@gmail.com
     icon: fa-solid fa-envelope
@@ -55,29 +56,59 @@ sections:
   - title: Education
     layout: experience
     items:
-      - org: University Name
-        url: https://example.com
-        position: M.S. in Computer Science
-        # logo: school-logo.png
-        start: 09/2025
+      - org: National Yang Ming Chiao Tung University
+        url: https://www.nycu.edu.tw/
+        position: "M.S. in Information Management and Finance <br> GPA: **3.92 / 4.3** (Overall)"
+        logo: nycu.png
+        start: 09/2024
         end: Now
+      - org: Taipei Municipal Zhong-Lun High School
+        url: https://www.zlsh.tp.edu.tw
+        position: Taipei City Mayor Award
+        logo: zlsh.png
+        start: 09/2021
+        end: 06/2024
 
   - title: Experience
     layout: experience
     items:
-      - org: Organization / Lab
-        url: https://example.com
-        position: Position title
-        # logo: your-logo.png
-        start: 09/2025
+      - org: Computational Photography Lab
+        url: https://yulunalexliu.github.io
+        position: "Undergraduate Research <br> Advised by Prof. [Yu-Lun Liu](https://yulunalexliu.github.io)"
+        logo: cplab.png
+        start: 05/2026
         end: Now
+      - org: MyPDA
+        url: https://www.mypda.ai/
+        position: AI agent Architecture Engineer Intern
+        logo: mypda.jpg
+        start: 03/2026
+        end: 09/2026
+      - org: AI System Lab
+        url: https://site.aislab.ee.ncku.edu.tw
+        position: "Undergraduate Research <br> Advised by Prof. [Chia-Chi Tsai](https://www.ee.ncku.edu.tw/teacher/index2.php?teacher_id=170)"
+        logo: aislab.png
+        start: 07/2024
+        end: 07/2025
+      - org: SITCON
+        url: https://sitcon.org/
+        position: Field Staff
+        logo: sitcon.png
+        start: 2024
+        end: 2025
+      - org: g0v movement
+        url: https://g0v.tw
+        position: Field Staff
+        logo: g0v.png
+        start: 01/2024
+        end: 05/2024
 
-  - title: News
-    layout: list
-    items:
-      - date: 2025-12
-        icon: "📄"
-        text: "Paper released on arXiv: [Evaluating the Performance of Open-Vocabulary Object Detection in Low-quality Image](https://arxiv.org/abs/2512.22801)"
+#  - title: News
+#    layout: list
+#    items:
+#      - date: 2025-12
+#        icon: ""
+#        text: ""
 
   - title: Research
     items:
@@ -104,7 +135,7 @@ sections:
   - title: Projects
     layout: grid
     items:
-      - title: UC Berkeley Intro to Computer Vision and Computational Photography Projects
+      - title: Intro to Computer Vision and Computational Photography Projects
         image: cs180.jpg
         venue: Self Practice
         year: 2026
@@ -113,9 +144,25 @@ sections:
             url: https://github.com/gohakushi1118/Intro-to-Computer-Vision-and-Computational-Photography
         description: >-
           CS180 is a publicly available course from UC Berkeley that includes five projects: Alignment & Colorization, Sharpening & Hybrid Images, Image Warping, (Auto) Stitching, and Image Generation Models. Since I will be conducting research in computer vision, I have been building up my knowledge and hands-on technical experience in the field through these projects.
+      - title: Machine Learning Projects
+        image: ml.png
+        venue: Self Practice
+        year: 2026
+        links:
+          - name: code
+            url: https://github.com/gohakushi1118/Machine-Learning
+        description: >-
+          Machine Learning, taught by Prof. Hung-yi Lee, is a publicly available course. I completed four main projects, including CNN, Autoencoder, Diffusion Model, and Adaptation. Through implementing these projects, I learned PyTorch, NumPy, and CUDA, along with machine learning theory, and built a solid foundation in the field.
+
+
+
 
   - title: Misc
     layout: misc
     items:
-      - icon: "✨"
-        text: Write something here.
+      - icon: "🌸"
+        text: I enjoy reading Novels, Mangas and Anime [List](https://hackmd.io/rIFtqO_fStKi8AwpUczSCw)
+      - icon: "🎵"
+        text: J-pop is my favorite kind of music [List](https://open.spotify.com/playlist/4rELMBMBFm7EhBChsa5HJL?si=3e9771d0dbdf4a56)
+      - icon: "🖊"
+        text: Pen in hand, I record my life [List](https://home.gamer.com.tw/profile/index_creation.php?owner=gohakushi)
